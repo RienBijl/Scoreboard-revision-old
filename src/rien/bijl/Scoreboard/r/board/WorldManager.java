@@ -22,6 +22,16 @@ public class WorldManager extends BukkitRunnable {
             }
     }
 
+    public void reload() {
+        this.disabled_worlds = new ArrayList<>();
+
+        if(ConfigControl.get().gc("settings").getStringList("disabled-worlds") != null)
+            for(String world : ConfigControl.get().gc("settings").getStringList("disabled-worlds"))
+            {
+                disabled_worlds.add(world.toLowerCase().trim());
+            }
+    }
+
     @Override
     public void run() {
         for(Player p : Bukkit.getOnlinePlayers())

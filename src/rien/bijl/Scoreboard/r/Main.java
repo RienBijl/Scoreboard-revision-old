@@ -1,6 +1,5 @@
 package rien.bijl.Scoreboard.r;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
@@ -30,7 +29,7 @@ public class Main extends JavaPlugin {
     private void init()
     {
         Session.plugin = this;
-        Session.isUpToDate("14754");
+        Session.isUpToDate();
         ConfigControl.get().createDataFiles();
         empty = getServer().getScoreboardManager().getNewScoreboard();
 
@@ -40,7 +39,8 @@ public class Main extends JavaPlugin {
 
         new Metrics(this);
 
-        new WorldManager().runTaskTimer(this, 20L, 40L);
+        Session.worldman = new WorldManager();
+        Session.worldman.runTaskTimer(this, 20L, 40L);
 
         finished();
     }

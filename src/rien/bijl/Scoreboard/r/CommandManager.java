@@ -36,6 +36,7 @@ public class CommandManager implements CommandExecutor {
                         Main.disolveBoards();
                         ConfigControl.get().reloadConfigs();
                         Main.loadBoards();
+                        Session.worldman.reload();
                         Func.smsg(player, "Scoreboard reloaded");
                     }
                 }  else {

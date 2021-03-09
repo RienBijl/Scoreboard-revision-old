@@ -146,7 +146,7 @@ public class Slimboard {
     {
         ArrayList<String> parts = new ArrayList<>();
 
-        if(ChatColor.stripColor(s).length() > allowed_line_size)
+        if(s.length() > allowed_line_size)
         {
             parts.add(s.substring(0, allowed_line_size));
 

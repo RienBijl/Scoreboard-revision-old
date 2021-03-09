@@ -1,6 +1,7 @@
 package rien.bijl.Scoreboard.r;
 
 import org.bukkit.entity.Player;
+import rien.bijl.Scoreboard.r.board.WorldManager;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -21,6 +22,8 @@ public class Session {
     // Objects
     public static Main plugin = null;
 
+    public static WorldManager worldman;
+
     // Bools
     public static boolean isuptodate = false;
 
@@ -28,11 +31,18 @@ public class Session {
     public static ArrayList<Player> disabled_players = new ArrayList<>();
     public static ArrayList<Player> re_enable_players = new ArrayList<>();
 
+    public static void isUpToDate()
+    {
+        String version = new UpdateChecker(plugin, 14754).getVersion();
+        isuptodate = plugin.getDescription().getVersion().replaceAll("\\s", "").equalsIgnoreCase(version);
+    }
+
     /**
      * Are we up to date?
      * @param resourceId
      */
-    public static void isUpToDate(String resourceId) {
+    @Deprecated
+    public static void isUpToDateOutdated(String resourceId) {
         try {
             HttpURLConnection con = (HttpURLConnection) new URL(
                     "https://www.spigotmc.org/api/general.php").openConnection();
