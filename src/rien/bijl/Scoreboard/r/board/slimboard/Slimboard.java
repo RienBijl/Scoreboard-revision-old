@@ -93,8 +93,18 @@ public class Slimboard {
         ArrayList<String> parts = null;
         if(App.longline) parts = convertIntoPieces(string, 64); else parts = convertIntoPieces(string, 16); // Convert it into pieces!
 
-        t.setPrefix(fixAnyIssues(parts.get(0))); // Set the first
-        t.setSuffix(fixAnyIssues(parts.get(1))); // Set the scond
+        if (parts.get(0).endsWith("§")) {
+            t.setPrefix(fixAnyIssues(parts.get(0).substring(0, parts.get(0).length() - 1))); // Set the first
+
+            if (parts.get(1).substring(2).startsWith("§")) {
+                t.setSuffix(fixAnyIssues("§" + parts.get(1).substring(4))); // Set the scond
+            } else {
+                t.setSuffix(fixAnyIssues("§" + parts.get(1).substring(2))); // Set the scond
+            }
+        } else {
+            t.setPrefix(fixAnyIssues(parts.get(0))); // Set the first
+            t.setSuffix(fixAnyIssues(parts.get(1))); // Set the scond
+        }
     }
 
 
